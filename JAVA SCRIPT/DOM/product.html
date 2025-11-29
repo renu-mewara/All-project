@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>proroductquantity</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+
+            }
+            body{
+                /* background-color: aqua; */
+            }
+            .main{
+                width: 250px;
+                margin: auto;
+                padding: 20px;
+            }
+            .count{
+                width: 250px;
+                margin: auto;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+
+            }
+            .btn{
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                border: 2px solid black;
+                border-radius: 15%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <img src="images/3.jpg">
+            <div>product name</div>
+            <div>price:</div>
+        </div>
+        <div class="count">
+            <button onclick="quantitiy_plus()" class="btn" id="plus">+</button>
+            <button class="btn" id="btn">0</button>
+            <button  onclick="quantitiy_minus()" class="btn" id="mins">-</button>
+        </div>
+        <script>
+            var plus_btn = document.getElementById('plus')
+            var btn = document.getElementById('btn')
+            var mins_btn = document.getElementById('minus')
+            function quantitiy_plus(){
+                    var number = btn.innerText;
+                    if(number < 5){
+                        number++;
+                        btn.innerText = number;
+                        mins_btn.disabled = false;
+                        
+                    }else{
+                        plus_btn.disabled = true
+                    }
+            }
+            function quantitiy_minus(){
+                 var number = btn.innerText;
+                    if(number > 0){
+                        number--;
+                        btn.innerText = number;
+                        plus_btn.disabled = false;
+                        
+                    }else{
+                        mins_btn.disabled = true
+                    }
+            }
+
+            </script>
+    </body>
+</html>

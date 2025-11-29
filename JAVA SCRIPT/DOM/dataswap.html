@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>data swap</title>
+        <style>
+            .*{
+                margin: 0px;
+                padding: 0px;
+            }
+            body{
+                background-color: aqua;
+
+            }
+            .main{
+                width: 1120px;
+                margin: auto;
+                border: 1px solid black;
+               
+            }
+            .maincontaint{
+                display: flex;
+            }
+            .containt{
+                background-color: aliceblue;
+                margin: 40px;
+                padding: 40px;
+                flex-basis: 40%;
+            }
+            .main button{
+                display: table;
+                margin: auto;
+                margin-bottom: 25px;
+                padding: 10px 15px;
+            }
+        </style>
+    </head>
+    <body>
+     <div class="main">
+        <div class="maincontaint">
+            <div class="containt" id="leftcontaint">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate magnam iste libero id nisi nihil, vero rerum tenetur non dolorem architecto voluptatem, est iusto quae quaerat ad amet tempora quibusdam?
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquam nemo amet assumenda nesciunt officiis quos perferendis repudiandae, unde, accusantium non molestiae aut nisi reprehenderit blanditiis eum! Omnis, ut repellat.
+            </div>
+            <div class="containt" id="rightcontaint">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum deserunt nobis molestiae ab suscipit eius repellendus, dolore numquam dolorem est expedita quaerat ex consequatur, exercitationem porro voluptatem ullam optio consequuntur?
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima impedit eaque unde culpa odio, in perferendis inventore eligendi nam voluptates aut quam, ullam odit nesciunt voluptatem aperiam. Asperiores, magni odio.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias corporis rerum deleniti asperiores, quod nemo voluptate blanditiis, minus laborum nihil quis veniam qui culpa quibusdam aut eveniet atque error aliquid.    
+            </div>
+        </div>
+        <button onclick="dataswipe()">swipe the data</button>
+
+     </div>
+     <script>
+        var leftcontaint = document.getElementById('leftcontaint');
+        var rightcontaint = document.getElementById('rightcontaint');
+        function dataswipe(){
+            var leftcontaintdata= leftcontaint.innerText;
+            var rightcontaintdata = rightcontaint.innerText;
+
+            leftcontaint.innerText=rightcontaintdata;
+            rightcontaint.innerText=leftcontaintdata;
+        }
+        // dataswipe();
+      </script>
+
+    </body>
+</html>

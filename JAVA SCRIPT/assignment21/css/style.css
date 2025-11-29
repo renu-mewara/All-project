@@ -1,0 +1,32 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.main{
+    max-width: 700px;
+    margin:  50px auto;
+}
+.main h1{
+    text-align: center;
+}
+.question{
+    border: 1px solid black;
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+.question_series{
+    background-color: black;
+    padding: 10px;
+    color: white;
+    position: relative;
+    cursor: pointer;
+}
+.question_series i{
+    position: absolute;
+    right: 10px;
+}
+.answer{
+    padding: 10px;
+    display:none ;
+    
+}

@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>slider</title>
+        <link rel="stylesheet" href="css/slide.css">
+    </head>
+    <body>
+        <div class="main">
+            <img src="images/boat1.jpg" class="slide" alt="">
+            <img src = "images/car.jpg" class="slide" alt="">
+             <img src = "images/boat.jpg" class="slide" alt="">
+             <img src = "images/9.jpg" class="slide" alt="">
+        </div>
+        <div class="buttons">
+            <button class="btn" onclick="prev()">Prev</button>
+            <button class="btn" onclick="next()">Next</button>
+         </div>
+
+    </body>
+    <script>
+            var slide = document.querySelectorAll(".slide");
+            var counter = 0
+            slide.forEach (( slide, index) =>{
+                slide.style.left = `${index*100}%`;
+
+            })
+            var prev = () =>{
+                counter--;
+                if(counter < 0){
+                    counter = slide.length - 1;
+                }
+                slideimage();
+
+            }
+            var next = () =>{
+                counter ++;
+                if(counter >= slide.length ){
+                    counter = 0;
+                }
+                slideimage();
+            }
+            var slideimage = () =>{
+                slide.forEach ((slide)=>{
+                    slide.style.transform = `translateX(-${counter*100}%)`;
+                })
+
+            }
+        </script>
+</html>

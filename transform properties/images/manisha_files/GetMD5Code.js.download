@@ -1,0 +1,190 @@
+﻿//history.go(1);
+function md5auth(seed, usernameid, passwordid, hiddenfieldid,captchaid) {
+    var username = document.getElementById(usernameid).value;
+    var password = document.getElementById(passwordid).value;
+    var captcha = document.getElementById(captchaid).value;
+
+    var errorMsg = '';
+    var reg = new RegExp("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+    if (username == null || username == "") {
+        errorMsg += "<li>Please enter Username / Email Id.</li>";
+    }
+    if (password == null || password == "") {
+        errorMsg += "<li>Please enter Password.</li>";
+    }
+    if (captcha == null || captcha == "") {
+        errorMsg += "<li>Please enter Captcha.</li>";
+    }
+
+  
+
+    if (!reg.test(username)) {
+        errorMsg += "<li>Please enter valid Username or Email Id.</li>";
+    }
+    if (errorMsg.length > 5) {
+        document.getElementById('validationSummary').innerHTML = "<ul>" + errorMsg + "</ul>";
+        return false;
+    }
+
+    document.getElementById(passwordid).value = "";
+    document.getElementById(passwordid).visibility = "hidden";
+
+  
+    
+    var h = MD5(password);
+    var str = seed.toString() + h;
+    var hash = MD5(str);
+
+    document.getElementById(hiddenfieldid).value = hash;
+   
+    return true;
+}
+
+
+/*......................Get MD5 for Login page.............................*/
+function GetMD5() {
+
+    var rexp = /^\w+$/;
+    var password = document.getElementById('txtNewPwd').value;
+    var cpassword = document.getElementById('txtConfirmPwd').value;
+
+    if (password.length < 6 || password.length > 50) {
+        alert("Please enter valid password"); document.getElementById('txtNewPwd').focus();
+        return false;
+    }
+    else if (password.search(rexp) == -1) {
+        alert("Please enter valid password"); document.getElementById('txtNewPwd').focus();
+        return false;
+    }
+    else if (cpassword.length < 6 || cpassword.length > 50) {
+        alert("Please enter valid confirm password");
+        //document.getElementById("lblPwdMismatch").visibility="visible";
+        document.getElementById('txtConfirmPwd').focus();
+        return false;
+    }
+    //    else if (cpassword.search(rexp) == -1) {
+    //        alert("Please enter valid confirm password"); document.getElementById('txtConfirmPwd').focus();
+    //        return false;
+    //    }
+    else if ((!cpassword.match(password)) && (password.length != cpassword.length)) {
+        alert("Password and confirm password shall be same");
+        document.getElementById('txtConfirmPwd').focus();
+        return false;
+    }
+    else {
+        document.getElementById('txtNewPwd').value = "";
+        document.getElementById('txtConfirmPwd').value = "";
+        document.getElementById('txtConfirmPwd').visibility = "hidden";
+        document.getElementById('txtNewPwd').visibility = "hidden";
+        var h = MD5(password);
+        document.getElementById('HiddenField1').value = h; return true;
+    }
+}
+/*......................Get MD5 for New User.............................*/
+function GetMD5ForNewUser() {
+
+    var rexp = /^\w+$/;
+    var password = document.getElementById('ContentPlaceHolder1_txtPassword').value;
+    var cpassword = document.getElementById('ContentPlaceHolder1_txtConfirmPassword').value;
+
+    if (password.length < 6 || password.length > 50) {
+        alert("Please enter valid password"); document.getElementById('ContentPlaceHolder1_txtPassword').focus();
+        return false;
+    }
+    //    else if (password.search(rexp) == -1) {
+    //        alert("Please enter valid password"); document.getElementById('ContentPlaceHolder1_txtPassword').focus();
+    //        return false;
+    //    }
+    else if (cpassword.length < 6 || cpassword.length > 50) {
+        alert("Please enter valid confirm password");
+        //document.getElementById("lblPwdMismatch").visibility="visible";
+        document.getElementById('ContentPlaceHolder1_txtConfirmPassword').focus();
+        return false;
+    }
+    //    else if (cpassword.search(rexp) == -1) {
+    //        alert("Please enter valid confirm password"); document.getElementById('ContentPlaceHolder1_txtConfirmPassword').focus();
+    //        return false;
+    //    }
+    else if ((!cpassword.match(password)) && (password.length != cpassword.length)) {
+        alert("Password Mismatch");
+        document.getElementById('ContentPlaceHolder1_txtConfirmPassword').focus();
+        return false;
+    }
+    else {
+        document.getElementById('ContentPlaceHolder1_txtPassword').value = "";
+        document.getElementById('ContentPlaceHolder1_txtConfirmPassword').value = "";
+        document.getElementById('ContentPlaceHolder1_txtConfirmPassword').visibility = "hidden";
+        document.getElementById('ContentPlaceHolder1_txtPassword').visibility = "hidden";
+        var h = MD5(password);
+        document.getElementById('ContentPlaceHolder1_HiddenField1').value = h; return true;
+    }
+}
+/*......................Get MD5 for Change password.............................*/
+function GetMD5ForChangePwd() {
+   
+    var rexp = /^\w+$/;
+    var opassword = document.getElementById('ctl00_ContentPlaceHolder1_txtOldPassword').value;
+    var password = document.getElementById('ctl00_ContentPlaceHolder1_txtNewPassword').value;
+    var cpassword = document.getElementById('ctl00_ContentPlaceHolder1_txtConfirmPassword').value;
+    var errorMsg = '';
+
+    if (opassword == null || opassword == "") {
+      
+            errorMsg += "<li>Old Password is mandatory.</li>";
+        
+       
+    }
+    if (password == null || password == "") {
+       
+            errorMsg += "<li>New Password is mandatory.</li>";
+      
+    }
+    if (cpassword == null || cpassword == "") {
+       
+            errorMsg += "<li>Confirm Password is mandatory.</li>";
+      
+    }
+
+    else if (password.length < 8 || password.length > 15) {
+   
+        errorMsg += "<li>New Password shall be at least 8 & maximum to 15 characters.</li>";
+   
+       
+    }
+
+else if (cpassword.length < 8 || cpassword.length > 15) {
+    errorMsg += "<li>Confirm Password shall be at least 8 & maximum to 15 characters.</li>";
+        
+    }
+   
+    else if (!cpassword.match(password)) {
+   
+        errorMsg += "<li>Password and confirm password shall be same.</li>";
+  
+
+    }
+else if (password.length != cpassword.length) {
+
+    errorMsg += "<li>Password and Confirm Password Length shall be Same.</li>";
+
+
+    }
+   
+
+     if (errorMsg.length > 5) {
+        document.getElementById('validationSummary').innerHTML = "<ul>" + errorMsg + "</ul>";
+        return false;
+    }
+    else {
+        document.getElementById('ctl00_ContentPlaceHolder1_txtNewPassword').value = "";
+        document.getElementById('ctl00_ContentPlaceHolder1_txtConfirmPassword').value = "";
+        document.getElementById('ctl00_ContentPlaceHolder1_txtConfirmPassword').visibility = "hidden";
+        document.getElementById('ctl00_ContentPlaceHolder1_txtNewPassword').visibility = "hidden";
+        document.getElementById('ctl00_ContentPlaceHolder1_txtOldPassword').value = "";
+        document.getElementById('ctl00_ContentPlaceHolder1_txtOldPassword').visibility = "hidden";
+        document.getElementById('ctl00_ContentPlaceHolder1_hideNewPwd').value = MD5(password);
+        document.getElementById('ctl00_ContentPlaceHolder1_hideOldPwd').value = MD5(opassword);
+
+        return true;
+    }
+}

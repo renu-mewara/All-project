@@ -1,0 +1,47 @@
+<html>
+	<head>
+		
+		<title> flip box</title>
+	</head>
+	<style>
+		.outer_circle{
+			width: 1000px;
+			/*margin: auto;*/
+		}
+		.circle{
+			width: 250px;
+			height: 150px;
+			border: 5px solid red;
+			position: relative;
+			margin: auto;
+		}
+		.img1{
+			width: 100%;
+			height: 100%;
+			transition: 0.5s;
+			transform: scale(0) rotateX(0deg);
+		}
+		.img2{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transition: 0.5s;
+		}
+		.circle:hover .img1{
+			transform: scale(1) rotateX(180deg);
+		}
+		.circle:hover .img2{
+			transform:  rotatey(180deg) scale(0);
+		}
+	</style>
+	<body>
+		<div class="outer_circle">
+			<div class="circle">
+			<img src="images/1.jpeg" class="img1">
+			<img src="images/2.jpeg" class="img2">
+		</div>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,136 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+body{
+	font-family: sans-serif;
+}
+.outer{
+	width: 100%;
+	text-align: center;
+	background-image: url('../images/spotlight-bg.webp');
+	color: white;
+	font-size: 18px;
+	padding: 50px 0px 100px 0px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+
+}
+.wscubetech{
+	 max-width: 1320px;
+	margin: auto;
+	padding: 50px;
+	box-sizing: border-box;
+}
+.wscubetech h1{
+	background-image: url('../images/spotlight-heading-bg.svg');
+	background-repeat: no-repeat;
+	background-position: right;
+	box-sizing: border-box;
+	background-position: right-bottom;
+	display: inline-block;
+	padding-right: 50px;
+	padding-bottom: 5px;
+}
+.wscubetech p{
+	color: white;
+}
+.wscubetech_number{
+	max-width: 1320px;
+	margin: auto;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	padding: 0px 50px 0px 50px;
+}
+.number{
+	border-left:1px solid white ;
+}
+.number h2{
+	font-size: 34px;
+	padding: 20px;
+}
+.number p{
+	color: #9CB2C5;
+}
+.number_border{
+border-left: #0B2F4F;
+}
+
+.maindiv{
+	display: flex;
+	max-width: 1320px;
+	height: 800px;	
+	margin: auto;
+	box-sizing: border-box;
+	padding: 50px;
+	justify-content: space-between;
+}
+.div_left{
+	flex-basis: 50%;
+	padding-right: 30px;
+}
+.div_left h2{
+	font-size: 28px;
+  margin-bottom: 10px;
+}
+.div_left p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+.left1{
+	 border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.left1 h4{
+	 margin-bottom: 10px;
+  color: #333;
+}
+.left1 p{
+	font-size: 15px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.left1 a{
+	color: #007bff;
+  font-weight: bold;
+  font-size: 14px;
+}
+.view_all{
+	 width: 100px;
+  height: 40px;
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.image_web{
+	 position: relative;
+  width: 100%;
+  height: auto;
+  background-image: url('../images/iq-dot-bg.webp'), url('../images/iq-circle.webp');
+  background-repeat: no-repeat, no-repeat;
+  background-position: top left, bottom right;
+  background-size: 100px, 150px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.image_web img{
+	width: 100%;
+	height: auto;
+	display: block;
+	position: relative;
+	z-index: 1;
+}

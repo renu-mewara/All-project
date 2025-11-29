@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>smallest array</title>
+    </head>
+    <body>
+
+
+
+
+
+
+
+
+
+        <script>
+            var number = [4,25,6,19,32];
+            smallest = number[0];
+            console.log(number);
+
+            for(index in number){
+                console.log('smallest =' + smallest);
+                if(number[index] < smallest){
+                    smallest= number[index];
+                    console.log(number[index]);
+                }
+            }
+        </script>
+    </body>
+</html>

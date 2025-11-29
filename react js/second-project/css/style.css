@@ -1,0 +1,18 @@
+input{
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 300px;
+    font-size: 20px;
+}
+button{
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 100px;
+    font-size: 20px;
+    background-color: aqua;
+    cursor: pointer;
+}

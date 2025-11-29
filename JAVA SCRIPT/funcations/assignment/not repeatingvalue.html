@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>funcation</title>
+    </head>
+    <body>
+        <!-- <button onclick="nonrepeating()">click me</button> -->
+
+
+
+
+        <script>
+            function nonrepeating(){
+                var str = "hello world Hello";
+                var result = "";
+                var character = {};
+                for(var value of str){
+                    if(value != ' '){
+                        lowervalue = value.toLowerCase();
+                        character[lowervalue] = (character[lowervalue] || 0) +1;
+                    }
+                }
+                for(var index in character){
+                    if(character[index] == 1){
+                        result = index;
+                        break;
+                    }
+                }
+            
+                console.log(result);
+            }
+            nonrepeating();
+        </script>
+    </body>
+</html>

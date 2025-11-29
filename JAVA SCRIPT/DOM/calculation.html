@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>calculator</title>
+    </head>
+    <body>
+        <table border="1" style="margin: auto;">
+            <tr>
+                <td>number1</td>
+                <td>
+                    <input type="text" id="num1">
+                </td>
+            </tr>
+             <tr>
+                <td>operation</td>
+                <td>
+                    <select name="" id="operation">
+                        <option value="+">+</option>
+                         <option value="-">-</option>
+                          <option value="*">*</option>
+                           <option value="/">/</option>
+                    </select>                
+                </td>
+            </tr>
+             <tr>
+                <td>number2</td>
+                <td>
+                    <input type="text" id="num2">
+                </td>
+            </tr>
+             <tr>
+                <td></td>
+                <td>
+                    <button onclick="calculator()">save</button>
+                </td>
+            </tr>
+            <tr>
+                <td>output</td>
+                <td>
+                    <input type="text" id="output">
+                </td>
+            </tr>
+        </table>
+        <script>
+            var num1 = document.getElementById("num1")
+            var opr = document.getElementById("operation")
+            var num2 = document.getElementById("num2")
+            var output = document.getElementById("output")
+            function calculator(){
+                var outputvalue;
+                switch(opr.value){
+                    case "+":
+                        outputvalue= Number(num1.value) + Number(num2.value);
+                        break;
+                        case "-":
+                        outputvalue= Number(num1.value) - Number(num2.value);
+                        break;
+
+                        case "*":
+                        outputvalue= Number(num1.value) * Number(num2.value);
+                        break;
+
+                        case "/":
+                        outputvalue= Number(num1.value) / Number(num2.value);
+                        break;
+                    default:
+                        break;
+
+
+                }
+                output.value=outputvalue;
+
+            }
+
+        </script>
+    </body>
+</html>

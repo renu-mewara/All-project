@@ -1,0 +1,27 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+.row{
+	width: 1200px;
+	margin: auto;
+	display: flex;
+	border: 1px solid black;
+	flex-wrap: wrap;
+}
+.column{
+	text-align: center;
+	margin: 1%;
+	width: 31%;
+	padding: 15px;
+	box-sizing: border-box;
+	border-radius: 10px;
+
+}
+.column img{
+	width: 25%;
+	height: 25%;
+
+
+}
+

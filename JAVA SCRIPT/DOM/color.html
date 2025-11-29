@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>color</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            body{
+                background-color: azure;
+                text-align: center;
+            }
+            .main{
+                width: 500px;
+                height: 250px;
+                margin: auto;
+                padding: 40px;
+                text-align: center;
+                border: 1px solid black;
+            }
+            .btn{
+                /* display: table; */
+                font-size: 25px;
+                border-radius: 10px;
+                margin: 20px;
+                padding-bottom: 10px 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main" id="main"></div>
+        <button class="btn" id="btn" onclick="colorchange()">change background-color</button>
+        <input type id="input" value>
+        </body>
+    <script>
+        var main = document.getElementById('main');
+        var btn = document.getElementById('btn');
+        var input = document.getElementById('input');
+        function colorchange(){
+            if(input.value == ''){
+                main.style.backgroundColor = 'black';
+                input.value = "black";
+            }else if(input.value == 'black'){
+                main.style.backgroundColor = 'blue';
+                input.value = 'blue';
+            }else if(input.value == 'blue'){
+                main.style.backgroundColor = 'yellow';
+                input.value = 'yellow';
+            }else{
+                main.style.backgroundColor = '';
+                input.value = '';
+            }
+        }
+    </script>
+</html>

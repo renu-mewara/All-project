@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>imagechanger loop</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                /* box-sizing: border-box; */
+            }
+            .main{
+                width: 1200px;
+                height: 300px;
+                margin:  50px auto;
+                text-align: center;
+                position: relative;
+            }
+            .img{
+                width: 800px;
+                height: 100%;
+            }
+            
+            .btn1{
+               padding: 10px 15px;
+                border-radius: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                color: red;
+                position: absolute;
+                top: 104px;
+                left: 40px;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <img src="images/4.jpg" class="img" />
+             <button  class="btn1" onclick="left()" style="padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+    position: absolute; top: 104px; left: 40px;">></button>
+            <button id="btn1" onclick="right()" style="padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+    position: absolute; top: 104px; right: 40px;">></button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>magic box</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            .mainbox{
+                width: 600px;
+                height: 300px;
+                text-align: center;
+                margin:  50px auto;
+                border: 1px solid black;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .box{
+                width: 200px;
+                /* height: 100px; */
+                border: 1px solid black;
+                box-sizing: border-box;
+                /* text-align: center; */
+                font-size: 25px;
+                align-content: center;
+                background-color: gray;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="mainbox">
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">1</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">2</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">3</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">4</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">5</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">6</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">7</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">8</div>
+            <div class="box" onmouseenter="changebackground(this)" onmouseout="changedefaultcolor(this)">9</div>
+        </div>
+       
+    <script>
+        var number = [];
+        function changebackground(i){
+            if(number.length < 9){
+                i.style.backgroundColor = "red"; 
+
+            }
+            if(!number.includes(i.innerText)){
+                number.push(i.innerText);
+            }
+        }
+        function changedefaultcolor(i){
+            i.style.backgroundColor = "gray"; 
+
+        }
+        
+    </script>
+    </body>
+</html>

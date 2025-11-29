@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>bulb</title>
+    </head>
+    <body style="margin: auto; text-align: center;">
+        <button onclick="bulbonoff('images/on.gif')" style="width: 50px; height: 50px; border:1px solid black;">on</button>
+        <img src="images/off.gif" id="img">
+        <button onclick="bulbonoff('images/off.gif')"  style="width: 50px; height: 50px; border:1px solid black;">off</button>
+    </body>
+    <script>
+        var img = document.getElementById('img');
+        function bulbonoff(onoff){
+            document.getElementById('img').src = onoff;
+
+        }
+        </script>
+</html>

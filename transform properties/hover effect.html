@@ -1,0 +1,64 @@
+<html>
+	<head>
+		
+		<title>rotate</title>
+	</head>
+	<style>
+		.outer_circle{
+			width: 1000px;
+			/*margin: auto;*/
+		}
+		.circle{
+			width: 250px;
+			height: 250px;
+			border: 5px solid red;
+			position: relative;
+			margin: auto;
+		}
+		.img1{
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			transition: 2s;
+			
+		}
+		.img2{
+			width: 70%;
+			height: 70%;
+			margin: 10%;
+			border-radius: 50%;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			transition: 2s;
+		}
+		.img3{
+			width: 50%;
+			height: 50%;
+			margin: 20%;
+			border-radius: 50%;
+			position: absolute;
+			top: 0px;
+			left:0px;
+			transition: 2s;
+		}
+		.circle:hover .img2{
+			transform:  rotateY(-180deg);
+		}
+		.circle:hover .img1{
+			transform:  rotateX(360deg);
+		}
+		.circle:hover .img3{
+			transform: rotateX(180deg);
+	</style>
+
+	<body>
+		<div class="outer_circle">
+			<div class="circle">
+			<img src="images/1.jpeg" class="img1">
+			<img src="images/2.jpeg" class="img2">
+			<img src="images/3.jpeg" class="img3">
+		</div>
+	</div>
+	</body>
+</html>

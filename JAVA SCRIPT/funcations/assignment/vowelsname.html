@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>vowelname</title>
+    </head>
+    <body>
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            function vowelnames(){
+                const indiannames = ["arjun", "vinita","ravi","nisha","ishan","neha", "deepak","aditya"];
+                var vowels =['a','e','i','o','u'];
+                var newarray = [];
+                var data;
+                for(data of indiannames){
+                    if(vowels.includes(data[0].toLowerCase())){
+                        if(data.length >= 5){
+                            newarray.push(data);
+                            console.log(data);
+                        }
+                    }
+                }
+                console.log(newarray);
+            }
+            vowelnames();
+
+
+
+
+
+        </script>
+
+    </body>
+</html>

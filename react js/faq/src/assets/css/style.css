@@ -1,0 +1,32 @@
+.main {
+  width: 60%;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.question {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.question_series {
+  background: hsl(0, 40%, 2%);
+  padding: 12px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer {
+  padding: 12px;
+  background: #fff;
+  display: block;
+}
+
+.answer.display {
+  display: none;
+}

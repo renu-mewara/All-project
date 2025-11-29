@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>password</title>
+    </head>
+    <body>
+        <div style="margin: auto; text-align: center;">
+        <input type="password" id="pass">
+        <button onclick="showpassword()" id="btn">show</button>
+        </div>
+        <script>
+            var passwordinput= document.getElementById("pass");
+            var btn = document.getElementById("btn");
+            function showpassword(){
+                var oldtype = passwordinput.type;
+                if(oldtype == "password"){
+                    passwordinput.type="Text";
+                    btn.innerHTML="hide";
+                }
+                else{
+                    passwordinput.type="password";
+                    btn.innerHTML="show";
+                }
+            }
+            </script>
+    </body>
+</html>

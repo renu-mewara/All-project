@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>imagechage</title>
+        <style>
+            .main{
+                margin: auto;
+                text-align: center;
+                width: 750px;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <img src="images/1.jpg" id="img1" style="width: 700px; height: 500px;">
+            <img src="images/2.jpg" onmouseover="changeimage(this)" style="width: 23%;" >
+            <img src="images/3.jpg" onmouseover="changeimage(this)" style="width: 23%;">
+            <img src="images/4.jpg" onmouseover="changeimage(this)" style="width: 23%;">
+             <img src="images/5.jpg" onmouseover="changeimage(this)" style="width: 23%;">
+
+        </div>
+        <script>
+
+            var img1 = document.querySelector("#img1");
+            function changeimage(currentimg){
+                var currentimagesrc = currentimg.src;
+                img1.src = currentimagesrc;
+            }
+            </script>
+    </body>
+</html>

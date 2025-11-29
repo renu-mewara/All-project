@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>cal</title>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                font-family: sans-serif;
+            }
+            table{
+                margin: auto;
+                background-color: aquamarine;
+            }
+            table tr td input{
+                width: 250px;
+                height: 30px;
+                text-align: right;
+                margin:10px;
+            }
+             table tr td{
+                text-align: center;
+             }
+            table tr td button{
+                width: 40px;
+                height: 40px;
+                margin: 10px;
+                color: black;
+                background-color: white;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <button>c</button>
+                </td>
+                <td colspan="3">
+                    <input type="text">
+                 </td>
+            </tr>
+            <tr>
+                <td><button>+</button></td>
+                <td><button>1</button></td>
+                <td><button>2</button></td>
+                <td><button>3</button></td>
+            </tr>
+            <tr>
+                <td><button>-</button></td>
+                <td><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+            </tr>
+            <tr>
+                <td><button>*</button></td>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+            </tr>
+            <tr>
+                <td><button>/</button></td>
+                <td><button>.</button></td>
+                <td><button>0</button></td>
+                <td><button>=</button></td>
+            </tr>
+        </table>
+    </body>
+    <script>
+        var opr = ["+","-", "*","/", "."]
+        const table = document.querySelector("table");
+        var input = document.querySelector("input");
+        table.addEventListener("click", (event)=>{
+            var targetpoint = event.target;
+            if(targetpoint.tagName =="BUTTON"){
+                var oldvalue = input.value;
+                var lastchar = oldvalue[oldvalue.length-1]
+                var removechar =  oldvalue.slice(0,oldvalue.length-1)
+                if(targetpoint.innerHTML == "c"){
+                    input.value = '';
+                }
+                else if(targetpoint.innerHTML == "="){
+                    input.value = eval(input.value);
+                }
+                else{
+                    if(opr.includes(targetpoint.innerHTML) && opr.includes(lastchar)){
+                        input.value = removechar + targetpoint.innerHTML;
+                    }
+                      else{
+                        input.value = oldvalue + targetpoint.innerHTML;
+                      }
+                }
+                
+                  
+                
+            }
+
+        })
+        </script>
+</html>

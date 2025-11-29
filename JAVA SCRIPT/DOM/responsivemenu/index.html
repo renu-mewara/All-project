@@ -1,0 +1,50 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>responsive menu</title>
+    <link rel="stylesheet"  href="css/style.css"/>
+     <link rel="stylesheet"  href="css/media.css"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">    
+</head>
+<body>
+	<header class="header">
+        <figure>
+            <img src="images/images.jpg" width="100px">
+        </figure>
+		<nav class="nav">
+            <ul>
+                <li>
+                    <a href="#">overview</a>
+                </li>
+                <li>
+                    <a href="#">project highlight</a>
+                </li>
+                <li>
+                    <a href="#">state plan</a>
+                </li>
+                <li>
+                    <a href="#">location</a>
+                </li>
+                <li>
+                    <a href="#">price list</a>
+                </li>
+                <li>
+                    <a href="#">gallery</a>
+                </li>
+                <li>
+                    <a href="#">contact us</a>
+                </li>
+            </ul> 
+        </nav>
+        <i class="fa-solid fa-bars barcode"></i>
+	</header>
+    <script>
+        var barcode = document.querySelector(".barcode");
+        var nav = document.querySelector("nav");
+        barcode.addEventListener("click", ()=>{
+            nav.classList.toggle("nav");
+        })
+        </script>
+</body>
+</html>

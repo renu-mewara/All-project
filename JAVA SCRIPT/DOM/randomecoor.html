@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>randome color</title>
+    </head>
+    <body>
+        <button>randome color</button>
+    </body>
+    <script>
+        var btn = document.querySelector("button");
+        var body = document.querySelector("body");
+        btn.addEventListener("click", () =>{
+            var randomcolorRed = Math.floor(Math.random()*255);
+            var randomcolorblue = Math.floor(Math.random()*255);
+            var randomcolorgreen = Math.floor(Math.random()*255);
+            body.style.background = `rgb(${randomcolorRed}, ${randomcolorblue}, ${randomcolorgreen})`;
+        })
+        </script>
+</html>

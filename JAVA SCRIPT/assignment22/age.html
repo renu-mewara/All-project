@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Age Verification</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="main">
+            <h1>age calculator</h1>
+            <input type="date" class="date">
+            <input type="time" class="time"><br>
+            <button class="btn" onclick="age()">calculate</button><br>
+            <div class="result">
+                <label>year:</label>
+                <input type="text" id="year" readonly><br>
+                <label>month:</label>
+                <input type="text" id="month" readonly><br>
+                <label>day:</label>
+                <input type="text" id="day" readonly><br>
+                <label>hour:</label>
+                <input type="text" id="hour" readonly><br>
+                <label>minute:</label>
+                <input type="text" id="minute" readonly><br>
+                <label>secound:</label>
+                <input type="text" id="secound" readonly><br>
+            </div>
+        </div>
+        <script>
+            function age() {
+    var date = document.querySelector('.date').value;
+    var time = document.querySelector('.time').value;
+
+    var yearEl = document.getElementById('year');
+    var monthEl = document.getElementById('month');
+    var dayEl = document.getElementById('day');
+    var hourEl = document.getElementById('hour');
+    var minuteEl = document.getElementById('minute');
+    var secoundEl = document.getElementById('secound');
+
+    var currentTime = new Date();
+    var userTimeZone = new Date(date + "T" + time);
+
+    var timeDifference = currentTime - userTimeZone;
+
+    var year = Math.floor(timeDifference / (1000*60*60*24*365.25));
+    var month = Math.floor((timeDifference % (1000*60*60*24*365.25)) / (1000*60*60*24*30));
+    var day = Math.floor((timeDifference % (1000*60*60*24*30)) / (1000*60*60*24));
+    var hour = Math.floor((timeDifference % (1000*60*60*24)) / (1000*60*60));
+    var minute = Math.floor((timeDifference % (1000*60*60)) / (1000*60));
+    var secound = Math.floor((timeDifference % (1000*60)) / 1000);
+
+    yearEl.value = year;
+    monthEl.value = month;
+    dayEl.value = day;    
+    hourEl.value = hour;
+    minuteEl.value = minute;
+    secoundEl.value = secound;
+}
+
+        </script>
+    </body>
+</html>

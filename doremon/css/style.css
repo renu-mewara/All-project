@@ -1,0 +1,155 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+body{
+	font-family: sans-serif;
+	background-color: black;
+
+}
+.main{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding-top: 100px;
+}
+.face{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	margin: auto;
+	background-color: blue;
+}
+.eyes{
+	width: 30px;
+	height: 45px;
+	background-color: 	white	;
+	border-radius: 	50%;
+	position: 	relative	;
+	top: 50px;
+	left: 45px;
+}
+.eyeliner{
+	width: 10px;
+	height: 18px;
+	background-color: 	black;
+	border-radius: 50%;
+	position: 	relative;
+	top: 25px;
+	left: 10px;
+}
+.eyeliner1{
+	width: 2px;
+	height: 6px;
+	background-color: 	white;
+	border-radius: 	50%;
+	position: relative;
+	top: 8px;
+	left: 4px;
+}
+.nose{
+	width: 25px;
+	height: 15px;
+	background-color:red;
+	border-radius: 	50%;
+	position: relative;
+	top: 20px;
+	left: 85px;
+}
+.mouth{
+	width: 50px;
+	height: 30px;
+	background-color:white;
+	border-radius: 	0px 0px 30px 30px;
+	position: relative;
+	top: 35px;
+	left: 70px;
+}
+.tounge{
+	width: 30px;
+	height: 20px;
+	background-color:red;
+	border-radius: 	0px 0px 20px 20px;
+	margin: auto;
+}
+.body_parts{
+	width: 200px;
+	height: 250px;
+	background-color:blue;
+	border-radius: 	40px 40px 0px 0px;
+	position: relative;
+	margin: auto;
+	bottom: 10px;
+}
+.neck{
+	width: 85px;
+	height: 20px;
+	background-color:red;
+	border-radius: 	10px 10px ;
+	position: absolute;
+	top: 0px;
+	left: 50px;
+}
+.gold_bag{
+	width: 20px;
+	height: 20px;
+	background-color:yellow;
+	border-radius: 	50px;
+	margin: auto;
+}
+.pocet{
+	width: 100px;
+	height: 50px;
+	background-color:white;
+	border-radius: 0px 0px	50px 50px ;
+	position: relative;
+	top: 80px;
+	margin: auto;
+}
+.hand1{
+	width: 40px;
+	height: 100px;
+	background-color:blue;
+	border-radius: 0px 0px	40px 40px ;
+	position: relative;
+	right: 25px;
+	bottom: 30px
+}
+.hand_circle{
+	width: 40px;
+	height: 40px;
+	background-color:white;
+	border-radius: 50px  ;
+	position: relative;
+	top: 80px;
+	right: 2px;
+}
+.hand2{
+	width: 100px;
+	height: 40px;
+	background-color:blue;
+	/*border-radius: 0px 0px	40px 40px ;*/
+	position: relative;
+	left: 185px;
+	bottom: 120px
+}
+.legspace{
+	width: 3px;
+	height: 68px;
+	background-color:lightgray;
+	position: relative;
+	left: 95px;
+}
+.feet{
+	width: 110px;
+	height: 40px;
+	background-color:white;
+	border-radius: 40px 40px 40px 40px ;
+	position: relative;
+	right: 10px;
+	bottom: 30px
+}

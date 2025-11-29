@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>copycat</title>
+
+    </head>
+    <body>
+        <input type="text" id="input" onkeyup="copycat()" style="text-align: center; margin-left: 600px;">
+        <div class="box" id="box"  style="width: 50 0px; height: 200px; border: 1px solid black; text-align: center; margin:  25px auto; font-size: 25px; color: aqua;"></div>
+    </body>
+    <script>
+        var input = document.getElementById('input');
+        var box = document.getElementById('box');
+        function copycat(){
+            box.innerText = input.value;
+        }
+    </script>
+</html>

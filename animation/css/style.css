@@ -1,0 +1,50 @@
+.*{
+	margin: 0px;
+	padding: 0px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+body{
+	background-color: white;
+	font-family: sans-serif;
+}
+.btn{
+	width: 100%;
+	text-align: center;
+}
+.button{
+	background: brown;
+    padding: 10px 25px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    position: relative;
+}
+.waves{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	background-color: brown;
+	opacity: 1;
+	top: 0px;
+	left: 0px;
+	animation: waveeffect 2s 0s infinite linear;
+
+}
+@keyframes waveeffect{
+	0%{
+		transform: scale(1,1);
+		opacity: 0;
+	}
+	50%{
+		transform: scale(1.5,1.5);
+		opacity: 0.5;
+	}
+	100%{
+		transform: scale(1,1);
+		opacity: 0;
+	}
+}
