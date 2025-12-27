@@ -9,6 +9,7 @@ import Productlisting from "./componet/Productlisting";
 import { store } from './ReduxToolkit/reduxtoolkit.js';
 import { Provider } from "react-redux";
 import ViewCart from "./componet/Viewcart.jsx";
+import Contact from "./componet/Contact.jsx";
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
@@ -20,6 +21,7 @@ ReactDOM.createRoot(root).render(
             <Route path="about-us" element={<Aboutus />} />
             <Route path="products" element={<Productlisting/>}/>
             <Route path="/view-carts" element={<ViewCart />} />
+            <Route path="contact" element={<Contact/>}/>
           </Route>
         </Routes>
     </Provider>

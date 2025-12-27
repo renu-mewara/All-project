@@ -1,12 +1,68 @@
 'use client'
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('dashboard');
-    const [selectedTitle, setSelectedTitle] = useState("Mr.");
+    const router = useRouter();
+    
+        const logout = () => {
+            Cookies.remove('user_login');
+            router.push('/');
+        }
+    const [userProfile, setUserProfile] = useState('');
+    const[useremail,setUseremail]=useState('');
+    const [selectedTitle, setSelectedTitle] = useState('');
+    const[updateprofile,setUpdateprofile]=useState(false);
+    const[isloading,setIsloading]=useState('');
 
+
+
+    useEffect(() => {
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/view-profile`,{},{
+            headers: {
+                Authorization: `Bearer ${Cookies.get('user_login')}`
+            }
+        })
+        .then(result => {
+            if(result.data._status === true){
+                setUserProfile(result.data._data);
+                setUseremail(result.data._data.email);
+                setSelectedTitle(result.data._data.gender);
+            }else{
+                toast.error(result.data._message);
+            }
+        })
+        .catch(error => {
+            toast.error("Failed to fetch profile data");
+        });
+    }, [updateprofile]);
+    const updateprofilehandling=(e)=>{
+        setIsloading(true);
+        e.preventDefault();
+        axios.put(`${process.env.NEXT_PUBLIC_API_URL}/user/update-profile`, e.target,{
+            headers: {
+                Authorization: `Bearer ${Cookies.get('user_login')}`
+            }
+        })
+        .then(result => {
+            if(result.data._status === true){
+                toast.success(result.data._message);
+                setIsloading(false);
+                setUpdateprofile(!updateprofile);
+            }
+        })
+        .catch(error => {
+            toast.error("Profile update failed");
+            setIsloading(false);
+        });
+            
+    }
     return (
         <>
             <Container fluid className='breadcrumbs_area'>
@@ -41,7 +97,7 @@ export default function DashboardPage() {
 
                                 <li><a onClick={() => setActiveTab('password')} className={`nav-link ${activeTab === 'password' ? 'active' : ''}`}>Change Password</a></li>
 
-                                <li><Link href="/" className='nav-link'>Logout</Link></li>
+                                <li onClick={logout}><a className='nav-link'>Logout</a></li>
                             </ul>
                         </Col>
 
@@ -271,30 +327,30 @@ export default function DashboardPage() {
                                     <div className="login">
                                         <div className="account_form login_form_container">
                                             <div className="account_login_form">
-                                                <form id="personal_information" autoComplete="off" noValidate="noValidate" className="bv-form">
+                                                <form onSubmit={updateprofilehandling} id="personal_information" autoComplete="off" noValidate="noValidate" className="bv-form">
 
                                                     <div className="col-xl-12">
                                                         <div className="input-radio">
                                                             <span className="custom-radio">
                                                                 <input
                                                                     type="radio"
-                                                                    value="Mr."
+                                                                    value="Male"
                                                                     name="title"
-                                                                    checked={selectedTitle === "Mr."}
+                                                                    checked={selectedTitle === "Male"}
                                                                     onChange={(e) => setSelectedTitle(e.target.value)}
                                                                 />
-                                                                Mr.
+                                                                Male
                                                             </span>
 
                                                             <span className="custom-radio">
                                                                 <input
                                                                     type="radio"
-                                                                    value="Mrs."
+                                                                    value="Female."
                                                                     name="title"
-                                                                    checked={selectedTitle === "Mrs."}
+                                                                    checked={selectedTitle === "Female"}
                                                                     onChange={(e) => setSelectedTitle(e.target.value)}
                                                                 />
-                                                                Mrs.
+                                                                Female
                                                             </span>
                                                         </div>
                                                     </div>
@@ -302,21 +358,21 @@ export default function DashboardPage() {
                                                     <div className="col-xl-12">
                                                         <div className="form-group has-feedback">
                                                             <label htmlFor="name">Name*</label>
-                                                            <input type="text" className="form-control" id="name" name="name" data-bv-field="name" />
+                                                            <input type="text" defaultValue={userProfile.name} className="form-control" id="name" name="name" data-bv-field="name" />
                                                         </div>
                                                     </div>
 
                                                     <div className="col-xl-12">
                                                         <div className="form-group has-feedback">
                                                             <label htmlFor="name">Email*</label>
-                                                            <input type="text" className="form-control" id="email" name="email" placeholdere="sultankhan.wscube@gmail.com" readOnly="readOnly" data-bv-field="email" />
+                                                            <input type="text" defaultValue={userProfile.email} className="form-control" id="email"  placeholdere="email" readOnly="readOnly" data-bv-field="email" />
                                                         </div>
                                                     </div>
 
                                                     <div className="col-xl-12">
                                                         <div className="form-group has-feedback">
                                                             <label htmlFor="name">Mobile Number*</label>
-                                                            <input type="text" className="form-control numeric" id="mobile_number" maxLength="15" name="mobile_number" data-bv-field="mobile_number" />
+                                                            <input type="text" defaultValue={userProfile.mobile_number} className="form-control numeric" id="mobile_number" maxLength="15" name="mobile_number" data-bv-field="mobile_number" />
                                                         </div>
                                                     </div>
 
@@ -329,7 +385,13 @@ export default function DashboardPage() {
 
 
                                                     <div className="login_submit">
-                                                        <button type="submit" className="common_btn text-uppercase" title="Update" id="updateInfo">Update</button>
+                                                        <button type="submit" className="common_btn text-uppercase" title="Update" id="updateInfo"
+                                                        disabled = {
+                                                            isloading ? 'disabled' : ''
+                                                        }
+                                                        >
+                                                            {isloading ? 'Loading...' : 'Update'}
+                                                            </button>
                                                     </div>
                                                 </form>
                                             </div>

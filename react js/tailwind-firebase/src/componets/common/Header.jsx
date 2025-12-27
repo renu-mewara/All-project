@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
 export default function Header() {
        const firebaseuser = localStorage.getItem('firebase_user');
          const [islogin, setislogin] = useState(firebaseuser ? true : false);
          const navigate = useNavigate();
+         
 
          const logout = (()=>{
             localStorage.removeItem('firebase_user');
@@ -21,8 +20,6 @@ export default function Header() {
     return (
         <>
         <ToastContainer/>
-
-
             <nav className="bg-white dark:bg-gray-900 sticky w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">

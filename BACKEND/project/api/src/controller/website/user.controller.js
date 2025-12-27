@@ -10,44 +10,47 @@ exports.register = async (request, response) => {
     datasave.role_type = 'user';
     datasave.password = await bcrypt.hash(datasave.password, saltRounds);
     await usermodel(datasave).save()
-    .then((result) => {
-    var token = jwt.sign({user_info : result}, (datasave,process.env.secret_key),);
-    const data ={
-        _status: true,
-        _message: 'Register successfully',
-        _data: datasave,
-        _token : token
-    };
-    response.send(data);      
-})
-.catch((error) => {
-    var errors = [];
-    for (var i in error.errors) {
-        errors.push(error.errors[i].message);
-    }
-    const data ={
-        _status: false,
-        _message: 'somthing went wrong',
-        _data: '',
-        _error : errors
-    }
-    response.send(data);
-        
-});
+        .then((result) => {
+            var token = jwt.sign({ user_info: result }, (datasave, process.env.secret_key),);
+            const data = {
+                _status: true,
+                _message: 'Register successfully',
+                _data: datasave,
+                _token: token
+            }
+        });
+    response.send(data)     
+
+.catch ((error) => {
+        var errors = [];
+        for (var i in error.errors) {
+            errors.push(error.errors[i].message);
+        }
+        const data = {
+            _status: false,
+            _message: 'somthing went wrong',
+            _data: '',
+            _error: errors
+        }
+        response.send(data);
+
+    });
+
+
 };
 
 exports.login = async (request, response) => {
-    const checkemail =  await usermodel.findOne({ email: request.body.email, deleted_at: null });
+    const checkemail = await usermodel.findOne({ email: request.body.email, deleted_at: null });
     if (checkemail == null) {
-         const data = {
+        const data = {
             _status: false,
             _message: 'invalid email address',
             _data: '',
         };
         response.send(data);
-    
-    } 
-     if (!await bcrypt.compare(request.body.password, checkemail.password)) {
+
+    }
+    if (!await bcrypt.compare(request.body.password, checkemail.password)) {
         const data = {
             _status: false,
             _message: 'invalid password',
@@ -63,15 +66,15 @@ exports.login = async (request, response) => {
         };
         response.send(data);
     }
-    var token = jwt.sign({user_info : checkemail}, (checkemail,process.env.secret_key),)
+    var token = jwt.sign({ user_info: checkemail }, (checkemail, process.env.secret_key),)
 
-        const data = {
-            _status: true,
-            _message: 'login successfully',
-            _token : token,
-            _data: checkemail,
-        };
-        response.send(data);  
+    const data = {
+        _status: true,
+        _message: 'login successfully',
+        _token: token,
+        _data: checkemail,
+    };
+    response.send(data);
 };
 exports.viewprofile = async (request, response) => {
     try {
@@ -94,9 +97,9 @@ exports.viewprofile = async (request, response) => {
                     const data = {
                         _status: true,
                         _message: 'record found successfully',
-                         _image_url : process.env.user_image,
+                        _image_url: process.env.user_image,
                         _data: result,
-                        
+
                     };
                     response.send(data);
                 } else {
@@ -129,7 +132,7 @@ exports.viewprofile = async (request, response) => {
     }
 };
 exports.updateprofile = async (request, response) => {
-     try {
+    try {
         token = request.headers.authorization.split(' ');
         var decoded = jwt.verify(token[1], process.env.secret_key);
         if (!decoded) {
@@ -142,26 +145,26 @@ exports.updateprofile = async (request, response) => {
             return;
         }
         var data = request.body;
-    if (request.file) {
-        data.image = request.file.filename;
-    }
+        if (request.file) {
+            data.image = request.file.filename;
+        }
         await usermodel.findByIdAndUpdate({
-             _id : decoded.user_info._id
-        },{
-                $set :{
-                    set : data
-                } 
+            _id: decoded.user_info._id
+        }, {
+            $set: {
+                set: data
+            }
 
-                
-         })
+
+        })
             .then((result) => {
                 if (result) {
                     const data = {
                         _status: true,
                         _message: 'record update successfully',
-                         _image_url : process.env.user_image,
+                        _image_url: process.env.user_image,
                         _data: result,
-                        
+
                     };
                     response.send(data);
                 } else {
@@ -194,15 +197,15 @@ exports.updateprofile = async (request, response) => {
     }
 };
 exports.changepassword = async (request, response) => {
-     try {
+    try {
         token = request.headers.authorization.split(' ');
         var decoded = jwt.verify(token[1], process.env.secret_key);
 
-        if(!decoded){
+        if (!decoded) {
             const data = {
-                _status : false,
-                _message : 'Invalid token value !',
-                _data : ''
+                _status: false,
+                _message: 'Invalid token value !',
+                _data: ''
             }
 
             response.send(data);
@@ -213,31 +216,31 @@ exports.changepassword = async (request, response) => {
 
         const checkPassword = await bcrypt.compare(request.body.current_password, userInfo.password);
 
-        if(!checkPassword){
+        if (!checkPassword) {
             const data = {
-                _status : false,
-                _message : 'Password is incorrect !',
-                _data : ''
+                _status: false,
+                _message: 'Password is incorrect !',
+                _data: ''
             }
 
             response.send(data);
         }
 
-        if(request.body.new_password != request.body.confirm_password){
+        if (request.body.new_password != request.body.confirm_password) {
             const data = {
-                _status : false,
-                _message : 'New Password and Confirm Password must be same !',
-                _data : ''
+                _status: false,
+                _message: 'New Password and Confirm Password must be same !',
+                _data: ''
             }
 
             response.send(data);
         }
 
-        if(request.body.current_password == request.body.confirm_password){
+        if (request.body.current_password == request.body.confirm_password) {
             const data = {
-                _status : false,
-                _message : 'Current Password and New Password cannot be same !',
-                _data : ''
+                _status: false,
+                _message: 'Current Password and New Password cannot be same !',
+                _data: ''
             }
 
             response.send(data);
@@ -246,40 +249,40 @@ exports.changepassword = async (request, response) => {
         password = await bcrypt.hash(request.body.new_password, saltRounds);
 
         await usermodel.updateOne({
-            _id : decoded.userInfo._id
+            _id: decoded.userInfo._id
         }, {
-            $set : {
-                password : password
+            $set: {
+                password: password
             }
         })
-        .then((result) => {
-            if(result){
-                const data = {
-                    _status: true,
-                    _message: 'Password change succussfully !!',
-                    _data: result
+            .then((result) => {
+                if (result) {
+                    const data = {
+                        _status: true,
+                        _message: 'Password change succussfully !!',
+                        _data: result
+                    }
+                    response.send(data);
+                } else {
+                    const data = {
+                        _status: false,
+                        _message: 'No Record found !!',
+                        _data: result
+                    }
+                    response.send(data);
                 }
-                response.send(data);
-            } else {
+
+            })
+            .catch((error) => {
+                console.log(error)
                 const data = {
                     _status: false,
-                    _message: 'No Record found !!',
-                    _data: result
+                    _message: 'Something went wrong !!',
+                    _error: error,
+                    _data: null
                 }
                 response.send(data);
-            }
-            
-        })
-        .catch((error) => {
-            console.log(error)
-            const data = {
-                _status: false,
-                _message: 'Something went wrong !!',
-                _error: error,
-                _data: null
-            }
-            response.send(data);
-        });
+            });
 
     } catch (error) {
         console.log(error)
@@ -293,13 +296,13 @@ exports.changepassword = async (request, response) => {
     }
 };
 
-exports.forgetpassword = async(request, response) => {
-    const userCheck = await usermodel.findOne({email : request.body.email});
-    if(!userCheck){
+exports.forgetpassword = async (request, response) => {
+    const userCheck = await usermodel.findOne({ email: request.body.email });
+    if (!userCheck) {
         const data = {
-            _status : false,
-            _message : 'Email id does not exit  !',
-            _data : ''
+            _status: false,
+            _message: 'Email id does not exit  !',
+            _data: ''
         }
         response.send(data);
         return;
@@ -335,9 +338,9 @@ exports.forgetpassword = async(request, response) => {
         });
 
         const data = {
-            _status : true,
-            _message : 'Reset email sent successfully !',
-            _data : ''
+            _status: true,
+            _message: 'Reset email sent successfully !',
+            _data: ''
         }
 
         response.send(data);
@@ -345,10 +348,10 @@ exports.forgetpassword = async(request, response) => {
     } catch (error) {
         console.log('Forgot password error:', error);
         const data = {
-            _status : false,
-            _message : 'Mail not Send !',
-            _error : error,
-            _data : ''
+            _status: false,
+            _message: 'Mail not Send !',
+            _error: error,
+            _data: ''
         }
 
         response.send(data);
@@ -357,14 +360,14 @@ exports.forgetpassword = async(request, response) => {
 exports.resetpassword = async (request, response) => {
     try {
         token = request.body.token;
-         console.log("TOKEN RECEIVED:", request.body.token);
+        console.log("TOKEN RECEIVED:", request.body.token);
         var decoded = jwt.verify(token, process.env.secret_key);
 
-        if(!decoded){
+        if (!decoded) {
             const data = {
-                _status : false,
-                _message : 'Invalid token value !',
-                _data : ''
+                _status: false,
+                _message: 'Invalid token value !',
+                _data: ''
             }
 
             response.send(data);
@@ -375,7 +378,7 @@ exports.resetpassword = async (request, response) => {
         console.log(userInfo);
 
         // const checkPassword = await bcrypt.compare(request.body.current_password, userInfo.password);
-        
+
 
         // if(!checkPassword){
         //     const data = {
@@ -387,52 +390,52 @@ exports.resetpassword = async (request, response) => {
         //     response.send(data);
         // }
 
-        if(request.body.new_password != request.body.confirm_password){
+        if (request.body.new_password != request.body.confirm_password) {
             const data = {
-                _status : false,
-                _message : 'New Password and Confirm Password must be same !',
-                _data : ''
+                _status: false,
+                _message: 'New Password and Confirm Password must be same !',
+                _data: ''
             }
 
             response.send(data);
         }
-        
+
         password = await bcrypt.hash(request.body.new_password, saltRounds);
         await usermodel.updateOne({
-            _id : decoded.id
+            _id: decoded.id
         }, {
-            $set : {
-                password : password
+            $set: {
+                password: password
             }
         })
-        .then((result) => {
-            if(result){
-                const data = {
-                    _status: true,
-                    _message: 'Password Reset succussfully !!',
-                    _data: result
+            .then((result) => {
+                if (result) {
+                    const data = {
+                        _status: true,
+                        _message: 'Password Reset succussfully !!',
+                        _data: result
+                    }
+                    response.send(data);
+                } else {
+                    const data = {
+                        _status: false,
+                        _message: 'No Record found !!',
+                        _data: result
+                    }
+                    response.send(data);
                 }
-                response.send(data);
-            } else {
+
+            })
+            .catch((error) => {
+                console.log(error)
                 const data = {
                     _status: false,
-                    _message: 'No Record found !!',
-                    _data: result
+                    _message: 'Something went wrong !!',
+                    _error: error.message,
+                    _data: null
                 }
                 response.send(data);
-            }
-            
-        })
-        .catch((error) => {
-            console.log(error)
-            const data = {
-                _status: false,
-                _message: 'Something went wrong !!',
-                _error: error.message,
-                _data: null
-            }
-            response.send(data);
-        });
+            });
 
     } catch (error) {
         console.log(error)
@@ -445,298 +448,4 @@ exports.resetpassword = async (request, response) => {
         response.send(data);
     }
 };
-
-
-exports.create = async (request, response) => {
-    
-    var data = request.body;
-    if (request.file) {
-        data.image = request.file.filename;
-    }
-
-
-    try {
-        var savedata = await new defaultModel(data).save()
-            .then((result) => {
-                const data = {
-                    _status: true,
-                    _message: 'Default created successfully',
-                    _data: result
-                };
-                response.send(data);
-            })
-            .catch((error) => {
-
-
-                var errors = [];
-                for (var i in error.errors) {
-                    errors.push(error.errors[i].message);
-                }
-                const data = {
-                    _status: false,
-                    _message: 'somthing went wrong',
-                    _data: null,
-                    _error: errors
-                };
-                response.send(data);
-            });
-    } catch (error) {
-        const data = {
-            _status: false,
-            _message: 'somthing went wrong',
-            _data: null,
-            _error: error
-        };
-        response.send(data);
-
-    }
-};
-exports.view = async (request, response) => {
-
-    var current_page = 1;
-    var total_records = 0;
-    var total_pages = 0;
-    var limit = 15;
-    var skip = 0;
-    if (request.query.page) {
-        current_page = parseInt(request.query.page);
-        skip = (current_page - 1) * limit;
-    }
-
-    try {
-        var conditions = {
-            deleted_at: null,
-            // status : true
-        };
-        const addCondition = [
-            {
-                deleted_at: null,
-                name: { $exists: true}
-            }
-        ];
-
-        const orCondition = [];
-        if (request.body.name != undefined) {
-            if (request.body.name != '') {
-                var name = new RegExp(request.body.name, 'i');
-                addCondition.push({ name: name })
-            }
-        }
-        if (addCondition.length > 0) {
-            var filter = { $and: addCondition }
-        } else {
-            var filter = {}
-        }
-
-        if (orCondition.length > 0) {
-            filter.$or = orCondition;
-        }
-        total_records = await defaultModel.find(filter).countDocuments();
-        await defaultModel.find(filter).select('name image order status').skip().limit(limit).sort({  _id: 'desc' })
-            .then((result) => {
-                if (result.length > 0) {
-
-                    var paginate = {
-                        current_page: current_page,
-                        total_records: total_records,
-                        total_pages: Math.ceiltotal_records / limit,
-                    }
-
-                    const data = {
-                        _status: true,
-                        _message: 'Default found successfully',
-                     _paginate: paginate,
-                        _image_url : process.env.default_image,
-                     _data: result,
-
-
-                    };
-                    response.send(data);
-                } else {
-                    const data = {
-                        _status: false,
-                        _message: 'No Default found',
-                        _data: []
-                    };
-                    response.send(data);
-                }
-            })
-            .catch((error) => {
-                const data = {
-                    _status: false,
-                    _message: 'somthing went wrong',
-                    _data: [],
-                    _error: error
-                };
-                response.send(data);
-            });
-    } catch (error) {
-        const data = {
-            _status: false,
-            _message: 'somthing went wrong',
-            _data: [],
-            _error: error
-        };
-        response.send(data);
-
-    }
-};
-exports.update = async(request, response) => {
-try {
-
-    var data = request.body;
-    data.updated_at = Date.now();
-    if (request.file) {
-        data.image = request.file.filename;
-    }
-        var savedata =  await defaultModel.updateOne({ _id: request.params.id }, { $set: data }, ) 
-            .then((result) => {
-                if (result.matchedCount == 1) {
-
-                const data = {
-                    _status: true,
-                    _message: 'Default updated successfully',
-                    _data: result
-                };
-                response.send(data);
-            } else {
-                const data = {
-                    _status: false,
-                    _message: 'No Default found',
-                    _data: null
-                };
-                response.send(data);
-            }
-            })
-            .catch((error) => {
-
-
-                var errors = [];
-                for (var i in error.errors) {
-                    errors.push(error.errors[i].message);
-                }
-                const data = {
-                    _status: false,
-                    _message: 'somthing went wrong',
-                    _data: null,
-                    _error: errors
-                };
-                response.send(data);
-            });
-    } catch (error) {
-        const data = {
-            _status: false,
-            _message: 'somthing went wrong',
-            _data: null,
-            _error: error
-        };
-        response.send(data);
-
- }};
-exports.destroy = async(request, response) => {
-    try {
-
-    var data ={
-        deleted_at : Date.now()
-    }
-        var savedata =  await defaultModel.updateMany({ _id: request.params.ids }, { $set: data }, ) 
-            .then((result) => {
-                if (result) {
-
-                const data = {
-                    _status: true,
-                    _message: 'Default deleted successfully',
-                    _data: result
-                };
-                response.send(data);
-            } else {
-                const data = {
-                    _status: false,
-                    _message: 'No Default found',
-                    _data: null
-                };
-                response.send(data);
-            }
-            })
-            .catch((error) => {
-
-
-                var errors = [];
-                for (var i in error.errors) {
-                    errors.push(error.errors[i].message);
-                }
-                const data = {
-                    _status: false,
-                    _message: 'somthing went wrong',
-                    _data: null,
-                    _error: errors
-                };
-                response.send(data);
-            });
-    } catch (error) {
-        const data = {
-            _status: false,
-            _message: 'somthing went wrong',
-            _data: null,
-            _error: error
-        };
-        response.send(data);
-
-    }};
-
-
-exports.changeStatus = async(request, response) => {
-    try {
-        var savedata =  await materialmodel.updateMany({
-            _id: request.body.ids
-         },[{ 
-             $set: {
-                status : {
-                    $not : "$status"
-                }
-             } 
-            } ]) 
-            .then((result) => {
-                if (result) {
-
-                const data = {
-                    _status: true,
-                    _message: 'Change status successfully',
-                    _data: result
-                };
-                response.send(data);
-            } else {
-                const data = {
-                    _status: false,
-                    _message: 'No Default found',
-                    _data: null
-                };
-                response.send(data);
-            }
-            })
-            .catch((error) => {
-
-
-                var errors = [];
-                for (var i in error.errors) {
-                    errors.push(error.errors[i].message);
-                }
-                const data = {
-                    _status: false,
-                    _message: 'somthing went wrong',
-                    _data: null,
-                    _error: errors
-                };
-                response.send(data);
-            });
-    } catch (error) {
-        const data = {
-            _status: false,
-            _message: 'somthing went wrong',
-            _data: null,
-            _error: error
-        };
-        response.send(data);
-
-    }};
 

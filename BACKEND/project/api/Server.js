@@ -26,6 +26,7 @@ server.use('/uploads/product', express.static('uploads/product'));
 
 // Website API URLs
 require('./src/routes/website/user.routes.js')(server);
+require('./src/routes/website/order.routes.js')(server);
 
 
 // Admin API URls

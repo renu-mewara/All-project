@@ -36,6 +36,8 @@ export default function Login() {
                     setisloading(false);
                     toast.success('account register sucessfully!')
                     navigate('/')
+                    window.location.reload();
+
                   })
                   .catch((error) => {
                     const errorCode = error.code;
@@ -66,6 +68,8 @@ export default function Login() {
                 setgooglelogin(false);
                 toast.success('Login succussfully !')
                 navigate('/');
+                window.location.reload();
+
 
                 // ...
             }).catch((error) => {
