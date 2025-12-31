@@ -40,7 +40,7 @@ export default function Resources() {
   return (
     <section className="bg-white">
       {/* Hero */}
-      <div className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white py-16 px-6 text-center">
+      <div className="bg-gradient-to-r from-indigo-600 to-green-600 text-white py-16 px-6 text-center">
         <h1 className="text-4xl font-bold">{hero.title}</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg">{hero.subtitle}</p>
       </div>
